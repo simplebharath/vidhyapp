@@ -265,7 +265,7 @@ class SettingsController extends Controller {
         $current_time = \Carbon\Carbon::now()->toDateTimeString();
 
         $rule = array(
-            'fee_name' => 'required|alpha_spaces|unique:fee_types',
+            'fee_name' => 'required|regex:/^[\pL\s]+$/u|unique:fee_types',
             'fee_status' => 'required'
         );
         $validator = Validator::make($data, $rule);

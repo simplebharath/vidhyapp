@@ -222,7 +222,7 @@ class UserController extends Controller {
         $academic_year_id = Session::get('academic_year_id');
 
         $rule = array(
-            'title' => 'required|alpha_spaces|min:3|max:255|unique:user_types',
+            'title' => 'required|regex:/^[\pL\s]+$/u|min:3|max:255|unique:user_types',
             'status' => 'required'
         );
         $validator = Validator::make($data, $rule);
@@ -267,7 +267,7 @@ class UserController extends Controller {
         $id = Session::get('user_type_id');
         $data = Input::except(array('_token'));
         $rule = array(
-            'title' => 'required|alpha_spaces|min:3|max:255',
+            'title' => 'required|regex:/^[\pL\s]+$/u|min:3|max:255',
             'status' => 'required'
         );
         $validator = Validator::make($data, $rule);
@@ -348,8 +348,8 @@ class UserController extends Controller {
         $created_user_id = Session::get('user_login_id');
         $academic_year_id = Session::get('academic_year_id');
         $rule = array(
-            'firstname' => 'required|alpha_spaces|min:3|max:255',
-            'lastname' => 'required|alpha_spaces',
+            'firstname' => 'required|regex:/^[\pL\s]+$/u|min:3|max:255',
+            'lastname' => 'required|regex:/^[\pL\s]+$/u',
             'user_name' => 'required|min:3|max:255|unique:user_logins',
             'email_id' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
@@ -456,8 +456,8 @@ class UserController extends Controller {
         $current_time = \Carbon\Carbon::now()->toDateTimeString();
         $data = Input::except(array('_token'));
         $rule = array(
-            'firstname' => 'required|alpha_spaces|min:3|max:255',
-            'lastname' => 'required|alpha_spaces',
+            'firstname' => 'required|regex:/^[\pL\s]+$/u|min:3|max:255',
+            'lastname' => 'required|regex:/^[\pL\s]+$/u',
             'username' => 'required|min:3|max:255',
             'email' => 'required|email|max:255',
             'address' => 'required',
@@ -568,7 +568,7 @@ class UserController extends Controller {
         $academic_year_id = Session::get('academic_year_id');
         $data = Input::except(array('_token'));
         $rule = array(
-            'class_name' => 'required|alpha_spaces|unique:classes'
+            'class_name' => 'required|regex:/^[\pL\s]+$/u|unique:classes'
         );
         $validator = Validator::make($data, $rule);
         if ($validator->fails()) {
@@ -641,7 +641,7 @@ class UserController extends Controller {
         $id1 = Session::get('user_login_id');
         $data = Input::except(array('_token'));
         $rule = array(
-            'class_name' => 'required|alpha_spaces|unique:classes'
+            'class_name' => 'required|regex:/^[\pL\s]+$/u|unique:classes'
         );
         $validator = Validator::make($data, $rule);
         if ($validator->fails()) {
@@ -853,7 +853,7 @@ class UserController extends Controller {
         $academic_year_id = Session::get('academic_year_id');
         $data = Input::except(array('_token'));
         $rule = array(
-            'subject_name' => 'required|alpha_spaces|unique:subjects'
+            'subject_name' => 'required|regex:/^[\pL\s]+$/u|unique:subjects'
         );
         $validator = Validator::make($data, $rule);
         if ($validator->fails()) {
@@ -910,7 +910,7 @@ class UserController extends Controller {
         $id1 = Session::get('user_login_id');
         $data = Input::except(array('_token'));
         $rule = array(
-            'subject_name' => 'required|alpha_spaces|unique:subjects'
+            'subject_name' => 'required|regex:/^[\pL\s]+$/u|unique:subjects'
         );
         $validator = Validator::make($data, $rule);
         if ($validator->fails()) {
@@ -1096,7 +1096,7 @@ class UserController extends Controller {
         $academic_year_id = Session::get('academic_year_id');
         $data = Input::except(array('_token'));
         $rule = array(
-            'section_name' => 'required|alpha_spaces|unique:sections'
+            'section_name' => 'required|regex:/^[\pL\s]+$/u|unique:sections'
         );
         $validator = Validator::make($data, $rule);
         if ($validator->fails()) {
@@ -1151,7 +1151,7 @@ class UserController extends Controller {
         $id1 = Session::get('user_login_id');
         $data = Input::except(array('_token'));
         $rule = array(
-            'section_name' => 'required|alpha_spaces|unique:sections'
+            'section_name' => 'required|regex:/^[\pL\s]+$/u|unique:sections'
         );
         $validator = Validator::make($data, $rule);
         if ($validator->fails()) {
@@ -2026,8 +2026,8 @@ class UserController extends Controller {
         $academic_year_id = Session::get('academic_year_id');
         $created_user_id = Session::get('user_login_id');
         $rule = array(
-            'first_name' => 'required|alpha_spaces',
-            'last_name' => 'required|alpha_spaces',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u',
             'email' => 'required|email',
             'phone' => 'required',
             'phone2' => 'required',
@@ -2124,8 +2124,8 @@ class UserController extends Controller {
         $current_time = \Carbon\Carbon::now()->toDateTimeString();
         $data = Input::except(array('_token'));
         $rule = array(
-            'first_name' => 'required|alpha_spaces',
-            'last_name' => 'required|alpha_spaces',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u',
             'phone' => 'required',
             'phone2' => 'required',
             'address' => 'required',
@@ -2237,8 +2237,8 @@ class UserController extends Controller {
         $academic_year_id = Session::get('academic_year_id');
 
         $rule = array(
-            'route_from' => 'required|alpha_spaces|unique:bus_routes',
-            'route_to' => 'required|alpha_spaces',
+            'route_from' => 'required|regex:/^[\pL\s]+$/u|unique:bus_routes',
+            'route_to' => 'required|regex:/^[\pL\s]+$/u',
             'status' => 'required'
         );
         $validator = Validator::make($data, $rule);
@@ -2291,8 +2291,8 @@ class UserController extends Controller {
         $select = $result[0]->status;
         $oldvalue = "route_to=" . $busrouteto . ",route_from=" . $busroutefrom . ",stauts=" . $select . ",fee_type_id=" . $id;
         $rule = array(
-            'route_from' => 'required|alpha_spaces',
-            'route_to' => 'required|alpha_spaces|unique:bus_routes',
+            'route_from' => 'required|regex:/^[\pL\s]+$/u',
+            'route_to' => 'required|regex:/^[\pL\s]+$/u|unique:bus_routes',
             'status' => 'required'
         );
         $validator = Validator::make($data, $rule);
@@ -2357,7 +2357,7 @@ class UserController extends Controller {
         $pickup_time = $request->input('pickup_time');
         $rule = array(
             'bus_route_id' => 'required',
-            'bus_stop_name' => 'required|alpha_spaces|unique:bus_stops',
+            'bus_stop_name' => 'required|regex:/^[\pL\s]+$/u|unique:bus_stops',
             'status' => 'required',
             'pickup_time' => 'required',
             'drop_time' => 'required|after:' . $pickup_time
@@ -2424,7 +2424,7 @@ class UserController extends Controller {
         $data = Input::except(array('_token'));
         $rule = array(
             //'bus_route_id' => 'required',
-            'bus_stop_name' => 'required|alpha_spaces',
+            'bus_stop_name' => 'required|regex:/^[\pL\s]+$/u',
             'status' => 'required',
             'pickup_time' => 'required',
             'drop_time' => 'required|after:' . $pickup_time

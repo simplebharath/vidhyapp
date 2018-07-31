@@ -94,8 +94,8 @@ class StaffController extends Controller {
         $join = [$institute_code, 'E', $new_staff_id];
         $staff_unique_id = implode("-", $join);
         $this->validate($request, [
-            'first_name' => 'required|alpha_spaces|min:3|max:255',
-            'last_name' => 'required|alpha_spaces',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|min:3|max:255',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u',
             'email' => 'required|email|max:255|unique:staff',
             'contact_number' => 'required|size:10|regex:/[0-9]{10}/',
             'emergency_number' => 'size:10|regex:/[0-9]{10}/',
@@ -229,8 +229,8 @@ class StaffController extends Controller {
         $created_user_id = Session::get('user_login_id');
         $academic_year_id = Session::get('academic_year_id');
         $this->validate($request, [
-            'first_name' => 'required|alpha_spaces|min:3|max:255',
-            'last_name' => 'required|alpha_spaces',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|min:3|max:255',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u',
             'email' => 'required|email|max:255',
             'contact_number' => 'required|size:10|regex:/[0-9]{10}/',
             'emergency_number' => 'size:10|regex:/[0-9]{10}/',

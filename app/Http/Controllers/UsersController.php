@@ -23,8 +23,8 @@ class UsersController extends Controller {
         $created_user_id = Session::get('user_login_id');
         $academic_year_id = Session::get('academic_year_id');
         $this->validate($request, [
-            'first_name' => 'required|alpha_spaces|min:3|max:255',
-            'last_name' => 'required|required|alpha_spaces',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|min:3|max:255',
+            'last_name' => 'required|required|regex:/^[\pL\s]+$/u',
             'email_id' => 'required|email|max:255|unique:users',
             'contact_number' => 'required|size:10|regex:/[0-9]{10}/',
             'address' => 'required',
@@ -93,8 +93,8 @@ class UsersController extends Controller {
         $created_user_id = Session::get('user_login_id');
         $academic_year_id = Session::get('academic_year_id');
         $this->validate($request, [
-            'first_name' => 'required|alpha_spaces|min:3|max:255',
-            'last_name' => 'required|required|alpha_spaces',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|min:3|max:255',
+            'last_name' => 'required|required|regex:/^[\pL\s]+$/u',
             'email_id' => 'required|email|max:255|unique:users,email_id,' . User::where('id', $user_id)->value('id'),
             'contact_number' => 'required|size:10|regex:/[0-9]{10}/',
             'address' => 'required',
