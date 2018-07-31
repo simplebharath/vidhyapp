@@ -1,24 +1,7 @@
-@include('include.header')
-@include('include.navigationbar')
-<div id="main" role="main" >
-    <div id="ribbon" >
-        <ol class="breadcrumb col-md-3">
-            <li>Home</li><li>Manage Classes</li>
-        </ol>
-        @include('include.dashboard_profie_signout')
-    </div>
-    <div id="content">
-        <div class="">
-            <ul class="nav nav-tabs">
-                <li  class="active"><a href="{{url ('view-classes')}}">Classes</a></li>
-                <li><a href="{{url ('view-sections')}}">Sections</a></li>
-                <li ><a href="{{url ('view-subjects')}}">Subjects</a></li>
-                <li ><a href="{{ url('view-class-sections')}}">Class-Sections</a></li>
-                <li ><a href="{{ url('view-class-subjects')}}">Class-Subjects</a></li> 
-                <li ><a href="{{ url('view-class-schedule')}}">Class-Schedule</a></li> 
-                <li ><a href="{{ url('view-class-teachers')}}">Class-Teacher</a></li>
-            </ul>
-        </div><br>   
+@extends('layouts.master')
+@section('title', 'Home')
+@section('sub-title', 'Classes')
+@section("main-content")    
         <div class="row">
             <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 @include('include.messages')
@@ -118,7 +101,5 @@
             </article>
         </div>
         
-        
-    </div>
-</div>
-@include('include.footer')
+@endsection  
+   
