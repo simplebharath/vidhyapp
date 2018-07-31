@@ -20,7 +20,7 @@ class StaffController extends Controller {
             $id = Session::get('academic_year_id');
             $years = DB::select(DB::raw("SELECT DATE_FORMAT(from_date,'%Y') AS from_year,DATE_FORMAT(to_date,'%Y') AS to_year,id FROM academic_years WHERE id = $id"));
             $staff_types = \App\Staff_type::where('status', '1')->get();
-            $user_types = \App\User_type::where('status', '1')->where('id','!=',1)->get();
+            $user_types = \App\User_type::where('status', '1')->where('id','!=',5)->where('id','!=',7)->where('id','!=',1)->get();
             return view('staff_details/add_staff', compact('years', 'staff_types', 'user_types'));
         } else {
             return redirect('view-staff');

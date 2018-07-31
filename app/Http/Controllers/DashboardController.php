@@ -193,9 +193,11 @@ class_sections.id =$id"));
     public function dashboard_search(Request $request) {
         $value = $request['search'];
         if ($value == "") {
+           // $url=root();
+          //  print_r(url()->previous());exit;
             return redirect('admin-dashboard');
         }
-        print_r($value);exit;
+        //print_r($value);exit;
         $student_ids=  \App\Student::where('academic_year_id',Session::get('academic_year_id'))->pluck('id');
        // print_r($student_ids);exit;
         $students = \App\Student::whereIn('students.id',$student_ids)
