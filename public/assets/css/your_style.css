@@ -1,0 +1,104 @@
+/*
+ * It is advised not to edit the smartadmin_production.css
+ * as this will override any changes you make in the 
+ * later versions of this theme. 
+ * 
+ * We advise that you use use this CSS to override 
+ * SmartAdmin styles. 
+ * 
+ * Rename the stylesheet to whatever your liking so it will stay
+ * unique to you with each update of SmartAdmin.
+ */
+
+/*
+ * INDEX
+ * 
+ * - HTML
+ * - BODY
+ * - CUSTOM STYLES
+   body { background: navy !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+
+#main { background-color:#FDFEFE !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+#pageheader-color{color: lightskyblue !important;}
+.error {color: #FF0000;}
+#logo img { max-height: 50px !important; }
+
+#html5-watermark{
+    display: none !important;
+}
+#header{
+    background-color:#a22990 !important;
+} 
+
+.jarviswidget>header>.widget-icon>i{
+    color: whitesmoke;
+}
+.jarviswidget>header>h2{
+    color: whitesmoke;
+}
+.btn-info.active, .btn-info:active, .btn-info:hover, .open>.dropdown-toggle.btn-info {
+    color: #fff;
+    background-color: #1a5276;
+    border-color: #385764;
+}
+.btn.btn-danger{
+    background-color:   #922b21 ;
+}
+
+.btn{
+    background-color: #1a5276;
+}
+.btn-primary:hover {
+    background-color: #1a5276;
+}
+.btn.btn-success{
+   background-color:  #27ae60 ; 
+}
+.btn.btn-default{
+    background-color:  #1abc9c ;
+}
+.panel-heading{
+    background-color:  #1abc9c ;
+}
+#ribbon{
+   width: 100% !important;
+}
+.panel-info>.panel-heading {
+background-color: #1a5276 !important;
+}
+.panel-title {
+    color: #f1f8f7  !important;
+}
+html{
+    width: 100%;
+}
+ input[type="text"] 
+      {
+         height:30px;
+      }
+      input[type="email"] 
+      {
+         height:30px;
+      }
+      input[type="password"] 
+      {
+         height:30px;
+      }
+       input[type="number"] 
+      {
+         height:30px;
+      }
+       input[type="tel"] 
+      {
+         height:30px;
+      }
+      select{
+        height:30px;  
+      }
+
+
+
+
+
+
+
