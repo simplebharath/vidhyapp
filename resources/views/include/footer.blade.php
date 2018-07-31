@@ -115,7 +115,7 @@
 <script>
     $(document).on("change", "#academic_year_session", function () {
     var academic_year_id = $(this).val();
-    var url='academic-year-session';
+    var url='/academic-year-session';
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('#token').val()
@@ -128,7 +128,7 @@
         dataType: 'JSON',
         success: function (data) {
             if (data) {
-                top.location.href="admin-dashboard";
+                top.location.href="{{url('admin-dashboard')}}";
                // window.location.reload();
               } else {
                 alert('Some thing went wrong.Please, try again!');

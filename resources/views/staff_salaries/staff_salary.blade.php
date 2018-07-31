@@ -87,7 +87,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if(COUNT($staff_salaries)==0)
+                                        @if(COUNT($staff_salaries)>0)
                                         <?php
                                         foreach ($staff_salaries as $staff_salary) {
                                             ?> 
