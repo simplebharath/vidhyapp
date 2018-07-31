@@ -2,25 +2,17 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+   
+   public function user_logins() {
+        return $this->belongsTo('App\User_login', 'user_login_id', 'id');
+    }
+    
+    public function user_types() {
+        return $this->belongsTo('App\User_type', 'user_type_id', 'id');
+    }
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
 }
