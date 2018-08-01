@@ -4,7 +4,7 @@
 <div id="main" role="main" >
     <div id="ribbon" >
         <ol class="breadcrumb col-md-3">
-            <li>@yield('title')</li><li>@yield("sub-title")</li>
+            <li>Home</li><li>@yield("sub-title")</li>
         </ol>
         @include('include.dashboard_profie_signout')
     </div>

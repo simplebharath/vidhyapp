@@ -8,7 +8,12 @@ class Class_section extends Model {
 
     protected $guarded = ['id'];
     protected $primaryKey = 'id';
-
+    
+    public function classSectionTabs() {
+        $this->tabs = ["add-class-section", "view-class-sections", "edit-class-section"];
+        return $this->tabs;
+    }
+    
     public function user_logins() {
         return $this->belongsTo('App\User_login', 'created_user_id', 'id');
     }

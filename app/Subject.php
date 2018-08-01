@@ -12,5 +12,8 @@ class Subject extends Model {
     public function user_logins() {
         return $this->belongsTo('App\User_login', 'created_user_id', 'id');
     }
-
+    public function subjectTabs() {
+        $this->tabs = ["add-subject", "view-subjects", "edit-subject"];
+        return $this->tabs;
+    }
 }

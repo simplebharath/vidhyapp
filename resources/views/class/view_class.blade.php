@@ -1,13 +1,12 @@
 @extends('layouts.master')
-@section('title', 'Home')
-@section('sub-title', 'Classes')
+@section('sub-title', '')
 @section("main-content")    
         <div class="row">
             <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 @include('include.messages')
                 <div class="jarviswidget " id="wid-id-3" data-widget-editbutton="false">
                     <header>
-                        <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
+<!--                        <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>-->
                         <h2>View Classes</h2>
                         @if(Session::get('add') == 1) <a type="button" class="btn bg-color-blueLight txt-color-white btn-xs pull-right" href="{{url('add-class')}}" style="margin-top: 5px;margin-right: 5px;"><i class="glyphicon glyphicon-plus-sign"></i> Add</a> @else
                         <a type="button" class="btn bg-color-blueLight txt-color-white btn-xs pull-right disabled" href="{{url('add-class')}}"  style="margin-top: 5px;margin-right: 5px;"><i class="glyphicon glyphicon-plus-sign"></i> Add</a> @endif

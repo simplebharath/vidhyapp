@@ -12,5 +12,10 @@ class Section extends Model {
     public function user_logins() {
         return $this->belongsTo('App\User_login', 'created_user_id', 'id');
     }
+    
+    public function sectionTabs() {
+        $this->tabs = ["add-section", "view-sections", "edit-section"];
+        return $this->tabs;
+    }
 
 }

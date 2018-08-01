@@ -7,77 +7,53 @@ use Session;
 use DB;
 use App\Classes;
 use App\Http\Controllers\Controller;
+use \App\Models\BaseModel;
 
 class ClassController extends Controller {
 
+    public function __construct() {
+        $this->classes = new Classes();
+        $this->subtitle = $this->classes->subTitle();
+    }
+
     public function add_class() {
+        $subTitle=$this->subtitle;
+        //echo $subTitle;exit;
         $add = Session::get('add');
         if ($add != 1) {
             return redirect('view-classes');
         } else {
-            return view('class/add_class');
+            return view('class/add_class',compact($subTitle));
         }
     }
 
     public function do_add_class(Request $request) {
-        $created_user_id = Session::get('user_login_id');
-        $academic_year_id = Session::get('academic_year_id');
-        $this->validate($request, [
-            'class_name' => 'required|unique:classes',
-        ]);
-        $classes = new Classes();
-        $classes->class_name = $request['class_name'];
-        $classes->created_user_id = $created_user_id;
-        $classes->academic_year_id = $academic_year_id;
-        $classes->save();
-        $data = array(
-            'log_type' => ' class added successfully!',
-            'message' => 'Added',
-            'new_value' => $request['class_name'],
-            'old_value' => 'No old values',
-            'academic_year_id' => $academic_year_id,
-            'user_login_id' => $created_user_id);
-        DB::table('log_details')->insert($data);
+        $this->validate($request, $this->classes->classesValidationAdd());
+        $this->classes->classesSave($request);
         return redirect('view-classes')->with(['message-success' => 'class ' . $request['class_name'] . ' added successfully.']);
     }
 
     public function view_class() {
+        $subTitle=$this->subtitle;
         $classes = Classes::orderBy('created_at', 'desc')->get();
-        return view('class/view_class', compact('classes'));
+        return view('class/view_class', compact('classes',$subTitle));
     }
 
     public function edit_class($class_id) {
+         $subTitle=$this->subtitle;
         $edit = Session::get('edit');
         $view = Session::get('view');
         if (($edit == 1) && ($view == 1)) {
             $classes = classes::where('id', $class_id)->get();
-            return view('class/edit_class', compact('classes'));
+            return view('class/edit_class', compact('classes',$subTitle));
         } else {
             return redirect('view-classes');
         }
     }
 
     public function do_edit_class(Request $request, $class_id) {
-        $created_user_id = Session::get('user_login_id');
-        $academic_year_id = Session::get('academic_year_id');
-        $this->validate($request, [
-            'class_name' => 'required|unique:classes,class_name,' . classes::where('id', $class_id)->value('id'),
-        ]);
-        $classes = classes::find($class_id);
-        $classes->class_name = $request['class_name'];
-        $classes->updated_user_id = $created_user_id;
-        //$classes->academic_year_id = $academic_year_id;
-        $old_values = classes::find($class_id);
-
-        $data = array(
-            'log_type' => 'Class updated successfully!',
-            'message' => 'Added',
-            'new_value' => $request['class_name'],
-            'old_value' => $old_values,
-            'academic_year_id' => $academic_year_id,
-            'user_login_id' => $created_user_id);
-        DB::table('log_details')->insert($data);
-        $classes->update();
+        $this->validate($request, $this->classes->classesValidationEdit($class_id));
+        $this->classes->classesUpdate($request, $class_id);
         return redirect('view-classes')->with(['message-success' => 'Class ' . $request['class_name'] . ' updated successfully.']);
     }
 

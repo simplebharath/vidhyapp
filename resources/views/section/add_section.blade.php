@@ -1,30 +1,11 @@
-@include('include.header')
-<style> #error-message{margin-left: 330px;}</style>
-@include('include.navigationbar')
-<div id="main" role="main" >
-    <div id="ribbon" >
-        <ol class="breadcrumb col-md-3">
-            <li>Home</li><li>Manage Classes</li>
-        </ol>
-        @include('include.dashboard_profie_signout')
-    </div>
-    <div id="content">       
-        <div class="">
-            <ul class="nav nav-tabs">
-                <li  ><a href="{{url ('view-classes')}}">Classes</a></li>
-                <li class="active"><a href="{{url ('view-sections')}}">Sections</a></li>
-                <li ><a href="{{url ('view-subjects')}}">Subjects</a></li>
-                <li ><a href="{{ url('view-class-sections')}}">Class-Sections</a></li>
-                <li ><a href="{{ url('view-class-subjects')}}">Class-Subjects</a></li> 
-                <li ><a href="{{ url('view-class-schedule')}}">Class-Schedule</a></li> 
-                <li ><a href="{{ url('view-class-teachers')}}">Class-Teacher</a></li>
-            </ul>
-        </div><br>
+@extends('layouts.master')
+@section('sub-title', "")
+@section("main-content")
         <div class="row">          
             <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="jarviswidget " id="wid-id-3" data-widget-editbutton="true">
                     <header>
-                        <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
+<!--                        <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>-->
                         <h2>Add Section</h2>
                         <a type="button" class="btn bg-color-blueLight txt-color-white btn-xs pull-right" href="{{url('view-sections')}}" style="margin-top: 5px;margin-right: 5px;"><i class="glyphicon glyphicon-eye-open"></i> View</a>
                     </header>
@@ -69,6 +50,4 @@
             </article>
             <div class="col-xs-1 col-sm-1 col-md-6 col-lg-6"></div>
         </div>
-    </div>
-</div>
-@include('include.footer')
+@endsection

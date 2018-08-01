@@ -19,5 +19,8 @@ class Staff_department extends Model {
      public function staff() {
         return $this->hasMany('App\Staff', 'staff_id', 'id');
     }
-
+    public function staffDepartmentsTabs() {
+        $this->tabs = ["view-staff-departments", "edit-staff-department", "edit-staff-type"];
+        return $this->tabs;
+    }
 }

@@ -1,30 +1,12 @@
-@include('include.header')
-@include('include.navigationbar')
-<div id="main" role="main" >
-    <div id="ribbon" >
-        <ol class="breadcrumb col-md-3">
-            <li>Home</li><li>Manage Classes</li>
-        </ol>
-        @include('include.dashboard_profie_signout')
-    </div>
-    <div id="content">
-        <div class="">
-            <ul class="nav nav-tabs">
-                <li  ><a href="{{url ('view-classes')}}">Classes</a></li>
-                <li class="active"><a href="{{url ('view-sections')}}">Sections</a></li>
-                <li ><a href="{{url ('view-subjects')}}">Subjects</a></li>
-                <li ><a href="{{ url('view-class-sections')}}">Class-Sections</a></li>
-                <li ><a href="{{ url('view-class-subjects')}}">Class-Subjects</a></li> 
-                <li ><a href="{{ url('view-class-schedule')}}">Class-Schedule</a></li> 
-                <li ><a href="{{ url('view-class-teachers')}}">Class-Teacher</a></li>
-            </ul>
-        </div><br>     
+@extends('layouts.master')
+@section('sub-title', "")
+@section("main-content")  
         <div class="row">
             <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 @include('include.messages')
                 <div class="jarviswidget " id="wid-id-3" data-widget-editbutton="false">
                     <header>
-                        <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
+<!--                        <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>-->
                         <h2>View Sections</h2>
                         @if(Session::get('add') == 1)  <a type="button" class="btn bg-color-blueLight txt-color-white btn-xs pull-right" href="{{url('add-section')}}" style="margin-top: 5px;margin-right: 5px;"><i class="glyphicon glyphicon-plus-sign"></i> Add</a>
                         @else <a type="button" class="btn bg-color-blueLight txt-color-white btn-xs pull-right disabled" href="#"  style="margin-top: 5px;margin-right: 5px;"><i class="glyphicon glyphicon-plus-sign"></i> Add</a>
@@ -105,6 +87,4 @@
                 </div>
             </article>
         </div>
-    </div>
-</div>
-@include('include.footer')
+@endsection

@@ -9,6 +9,10 @@ class Class_teacher extends Model {
     protected $guarded = ['id'];
     protected $primaryKey = 'id';
     
+    public function classTeacherTabs() {
+        $this->tabs = ["add-class-teacher", "view-class-teachers", "edit-class-teacher"];
+        return $this->tabs;
+    }
     public function user_logins() {
         return $this->belongsTo('App\User_login', 'created_user_id', 'id');
     }

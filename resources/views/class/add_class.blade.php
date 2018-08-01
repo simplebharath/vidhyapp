@@ -1,14 +1,13 @@
 <style> #error-message{margin-left: 400px;}</style>
 @extends('layouts.master')
-@section('title', 'Home')
-@section('sub-title', 'Classes')
+@section('sub-title', "")
 @section("main-content")
 <div class="row">          
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="jarviswidget " id="wid-id-3" data-widget-editbutton="true">
             <header>
-                <span class="widget-icon"> <i class="fa fa-plus"></i> </span>
-                <h2>Add class</h2>
+<!--                <span class="widget-icon"> <i class="fa fa-plus"></i> </span>-->
+                <h2>Add class </h2>
                 <a type="button" class="btn bg-color-blueLight txt-color-white btn-xs pull-right" href="{{url('view-classes')}}" style="margin-top: 5px;margin-right: 5px;"><i class="glyphicon glyphicon-eye-open"></i> View</a>
             </header>
             <div>

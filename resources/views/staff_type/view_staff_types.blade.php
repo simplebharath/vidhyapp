@@ -1,29 +1,12 @@
-@include('include.header')
-@include('include.navigationbar')
-<div id="main" role="main" >
-    <div id="ribbon" >
-        <ol class="breadcrumb col-md-3">
-            <li>Home</li><li>Manage Staff</li>
-        </ol>
-        @include('include.dashboard_profie_signout')
-    </div>
-    <div id="content">
-        <div class="">
-            <ul class="nav nav-tabs">
-                <li  class="active"><a href="{{url ('view-staff-types')}}">Staff Types</a></li>
-                <li><a href="{{url ('view-staff-departments')}}">Staff Departments</a></li>
-                <li ><a href="{{url ('view-staff')}}">Staff</a></li>  
-                <li><a href="{{url ('view-staff-subjects')}}">Staff subjects</a></li>
-                <li ><a href="{{url ('view-staff-attendance')}}">Staff attendance</a></li>
-                <li ><a href="{{url ('view-staff-salaries')}}">Staff salaries</a></li>
-            </ul>
-        </div><br>       
+@extends('layouts.master')
+@section('sub-title', "")
+@section("main-content")      
         <div class="row">
             <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 @include('include.messages')
                 <div class="jarviswidget " id="wid-id-3" data-widget-editbutton="false">
                     <header>
-                        <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
+                        
                         <h2>View Staff types</h2>
                         @if(Session::get('add') == 1) <a type="button" class="btn bg-color-blueLight txt-color-white btn-xs pull-right" href="{{url('add-staff-type')}}" style="margin-top: 5px;margin-right: 5px;"><i class="glyphicon glyphicon-plus-sign"></i> Add</a> @else
                         <a type="button" class="btn bg-color-blueLight txt-color-white btn-xs pull-right disabled" href="{{url('add-staff-type')}}"  style="margin-top: 5px;margin-right: 5px;"><i class="glyphicon glyphicon-plus-sign"></i> Add</a> @endif
@@ -126,6 +109,4 @@
                 </div>
             </article>
         </div>
-    </div>
-</div>
-@include('include.footer')
+@endsection
