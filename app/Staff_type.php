@@ -17,8 +17,4 @@ class Staff_type extends Model {
         return $this->hasMany('App\Staff_department', 'staff_type_id', 'id');
     }
     
-    public function staffTypesTabs() {
-        $this->tabs = ["view-staff-types", "add-staff-type", "edit-staff-type"];
-        return $this->tabs;
-    }
 }

@@ -11,7 +11,7 @@
     <div id="content">       
         <div class="">
             <ul class="nav nav-tabs">
-               @include('layouts.sub_tabs')
+               @include('layouts.master_tabs')
             </ul>
         </div><br>
         @section("main-content")
