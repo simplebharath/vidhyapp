@@ -2,16 +2,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Class_section extends Model {
+class Class_section extends BaseModel {
 
     protected $guarded = ['id'];
     protected $primaryKey = 'id';
     
-    public function classSectionTabs() {
-        $this->tabs = ["add-class-section", "view-class-sections", "edit-class-section"];
-        return $this->tabs;
+    public static function classSectionTabs() {
+        $tabs = ["add-class-section", "view-class-sections", "edit-class-section"];
+        return $tabs;
     }
     
     public function user_logins() {

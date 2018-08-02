@@ -1,5 +1,5 @@
 <style> #error-message{margin-left: 360px;}</style>
-@section('sub-title', '')
+@section('sub-title', $subTitle)
 @extends('layouts.master')
 @section("main-content")
         <div class="row">

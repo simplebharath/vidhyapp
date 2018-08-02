@@ -1,17 +1,16 @@
 <?php
 
 namespace App;
+use App\Models\BaseModel;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Class_teacher extends Model {
+class Class_teacher extends BaseModel {
 
     protected $guarded = ['id'];
     protected $primaryKey = 'id';
     
-    public function classTeacherTabs() {
-        $this->tabs = ["add-class-teacher", "view-class-teachers", "edit-class-teacher"];
-        return $this->tabs;
+    public static function classTeacherTabs() {
+        $tabs = ["add-class-teacher", "view-class-teachers", "edit-class-teacher"];
+        return $tabs;
     }
     public function user_logins() {
         return $this->belongsTo('App\User_login', 'created_user_id', 'id');

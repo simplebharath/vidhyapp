@@ -6,76 +6,62 @@ use Illuminate\Http\Request;
 use \App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 
-class Classes extends Model {
+class Classes extends BaseModel {
 
     protected $guarded = ['id'];
     protected $primaryKey = 'id';
-    protected $method = null;
-    public $academic_year_id = null;
-    public $user_login_id = null;
 
-    public function __construct() {
-        $this->method = new BaseModel();
-        $this->academic_year_id = $this->method->session_academic_year_id();
-        $this->user_login_id = $this->method->session_user_login_id();
+    public static function classesTabs() {
+        $classTabs = ["add-class", "view-classes", "edit-class"];
+        return $classTabs;
     }
 
-    public function classesTabs() {
-        $this->tabs = ["add-class", "view-classes", "edit-class"];
-        return $this->tabs;
-    }
-    public function subTitle() {
-        $this->title = "Manage Classes";
-        return $this->title;
+    public static function subTitle() {
+        $subTitle = "Manage Classes";
+        return $subTitle;
     }
 
-    public function classesValidationAdd() {
+    public static function classesValidationAdd() {
         $validateData = [
             'class_name' => 'required|unique:classes',
         ];
         return $validateData;
     }
 
-    public function classesValidationEdit($class_id) {
+    public static function classesValidationEdit($class_id) {
         $validateData = [
             'class_name' => 'required|unique:classes,class_name,' . classes::where('id', $class_id)->value('id'),
         ];
         return $validateData;
     }
 
-    public function classesSave($request) {
-        $classes_save = new Classes();
-        $classes_save->class_name = $request['class_name'];
-        $classes_save->created_user_id = $this->user_login_id;
-        $classes_save->academic_year_id = $this->academic_year_id;
-        $classes_save->save();
-        if ($classes_save->id) {
-            $data = array(
-                'log_type' => ' class added successfully!',
-                'message' => 'Added',
-                'new_value' => $request['class_name'],
-                'old_value' => 'No old values',
-                'academic_year_id' => $this->academic_year_id,
-                'user_login_id' => $this->user_login_id);
-            $this->method->saveLogData($data);
+    public static function classesSaveOrUpdate($request, $class_id = null) {
+        $classes = 'No old values';
+        if ($class_id > 0) {
+            $classes = classes::find($class_id);
+            $classes->class_name = $request['class_name'];
+            $classes->academic_year_id = BaseModel::session_academic_year_id();
+            $classes->update();
+            $data['old_value'] = $classes;
+        } else {
+            $classes = new Classes();
+            $classes->class_name = $request['class_name'];
+            $classes->academic_year_id = BaseModel::session_academic_year_id();
+            $classes->created_user_id = BaseModel::session_user_login_id();
+            $classes->save();
+            $data['old_value'] = "No old values";
         }
-        return true;
-    }
 
-    public function classesUpdate($request, $class_id) {
-        $classes = classes::find($class_id);
-        $classes->class_name = $request['class_name'];
-        $classes->updated_user_id = $this->user_login_id;
-        $old_values = classes::find($class_id);
-        $data = array(
-            'log_type' => 'Class updated successfully!',
-            'message' => 'Added',
-            'new_value' => $request['class_name'],
-            'old_value' => $old_values,
-            'academic_year_id' => $this->academic_year_id,
-            'user_login_id' => $this->user_login_id);
-        $this->method->saveLogData($data);
-        $classes->update();
+        if ($classes->id) {
+            $data = array(
+                'log_type' => ' class added/Updated successfully!',
+                'message' => 'Added/Updated',
+                'new_value' => $request['class_name'],
+                //'old_value' => $classes,
+                'academic_year_id' => BaseModel::session_academic_year_id(),
+                'user_login_id' => BaseModel::session_user_login_id());
+            BaseModel::saveLogData($data);
+        }
         return true;
     }
 
